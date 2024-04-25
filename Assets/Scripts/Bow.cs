@@ -51,18 +51,16 @@ namespace Archer
 
             yield return new WaitForSeconds(0.3f);
 
-
-            // Instanciar una flecha
-           
-
-            // Colocar la flecha en el punto de referencia de la mano de la arquera
+            animator.SetTrigger("Shoot");
          
 
+            // Instanciar una flecha
+            // Colocar la flecha en el punto de referencia de la mano de la arquera
             // Orientar la flecha hacia delante con respecto a la arquera
-           
-
+            arrowPrefab = Instantiate(arrowPrefab, new Vector3(handPosition.position.x, handPosition.position.y + 0.2f, handPosition.position.z), this.transform.rotation);
             // Aplicar una fuerza a la flecha para que salga disparada
-          
+            arrowPrefab.GetComponent<Rigidbody>().AddForce(arrowPrefab.transform.forward * force);
+
         }
     }
 

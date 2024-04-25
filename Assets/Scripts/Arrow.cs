@@ -33,17 +33,18 @@ namespace Archer
             hit = true;
 
             // Reproducir el impacto de la flecha
-  
+
 
             // Hacemos que la flecha sea hija del objeto contra el que impacta, para que se mueva con el
-           
+            this.transform.position = other.transform.position;
+
             // Hacemos que la flecha sea kinematica para que no responda a nuevas aceleraciones (se quede clavada)
-           
+            arrowRigidbody.isKinematic = true;
 
             // Miramos a ver si el objeto contra el que ha impacto la flecha tiene un componente Enemy...
-           
+
             // ... Y si lo tiene, le hacemos daño (la siguiente comprohación es equivalente a hacer if (enemy != null) { enemy.Hit(); }
-          
+
         }
 
     }
