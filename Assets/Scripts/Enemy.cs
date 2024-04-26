@@ -20,18 +20,24 @@ namespace Archer
         private void Awake()
         {
             animator = GetComponent<Animator>();
+           
         }
 
         // Método que se llamará cuando el enemigo reciba un impacto
         public void Hit()
         {
-         
+            hitPoints--;
+            if (hitPoints == 0)
+            {
+                Die();
+            }
         }
 
         private void Die()
         {
-           
+            Destroy(this.gameObject);
         }
+
     }
 
 }

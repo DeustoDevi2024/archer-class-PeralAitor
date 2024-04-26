@@ -8,6 +8,7 @@ namespace Archer
 
         private Rigidbody arrowRigidbody;
         private bool hit;
+        private Enemy enemy;
 
         private void Awake()
         {
@@ -36,15 +37,19 @@ namespace Archer
 
 
             // Hacemos que la flecha sea hija del objeto contra el que impacta, para que se mueva con el
-            this.transform.position = other.transform.position;
+            this.transform.parent = other.transform;
 
             // Hacemos que la flecha sea kinematica para que no responda a nuevas aceleraciones (se quede clavada)
             arrowRigidbody.isKinematic = true;
 
             // Miramos a ver si el objeto contra el que ha impacto la flecha tiene un componente Enemy...
+           if(other.transform.parent.gameObject.tag == "Enemy")
+           {
+                enemy = other.transform.parent.gameObject.GetComponent<Enemy>();
+                enemy.Hit();
+            }
 
             // ... Y si lo tiene, le hacemos daño (la siguiente comprohación es equivalente a hacer if (enemy != null) { enemy.Hit(); }
-
         }
 
     }
