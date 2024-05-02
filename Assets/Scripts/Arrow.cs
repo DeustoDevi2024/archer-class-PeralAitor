@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Archer
@@ -5,10 +6,10 @@ namespace Archer
 
     public class Arrow : MonoBehaviour
     {
-
         private Rigidbody arrowRigidbody;
         private bool hit;
         private Enemy enemy;
+        public AudioSource impactSound;
 
         private void Awake()
         {
@@ -16,6 +17,7 @@ namespace Archer
             arrowRigidbody = GetComponent<Rigidbody>();
            
         }
+
 
         // El rigidbody de la flecha es tipo Trigger, para que no colisione
         private void OnTriggerEnter(Collider other)
@@ -34,7 +36,7 @@ namespace Archer
             hit = true;
 
             // Reproducir el impacto de la flecha
-
+            impactSound.Play();
 
             // Hacemos que la flecha sea hija del objeto contra el que impacta, para que se mueva con el
             this.transform.parent = other.transform;
